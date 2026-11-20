@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Démonstrations à connaître</title>
+<meta name="theme-color" content="#1d4f91">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap">
+<link rel="stylesheet" href="katex/katex.min.css">
+<script defer src="katex/katex.min.js"></script>
+<script defer src="katex/auto-render.min.js"></script>
+<style>
+:root{--bg:#f2f5f9;--surface:#fff;--fg:#141b27;--muted:#556075;--line:#d6dde8;--accent:#1d4f91;--accent-soft:#e3ecf8;--ok:#1e6b45;
+  --font:'Source Sans 3',system-ui,sans-serif;--serif:'STIX Two Text',Georgia,serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f141c;--surface:#171e2a;--fg:#e6ebf2;--muted:#9aa6b8;--line:#2b3546;--accent:#8db4ea;--accent-soft:#1d2a3d;--ok:#7fd1a4}}
+:root[data-theme="dark"]{--bg:#0f141c;--surface:#171e2a;--fg:#e6ebf2;--muted:#9aa6b8;--line:#2b3546;--accent:#8db4ea;--accent-soft:#1d2a3d;--ok:#7fd1a4}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:18px/1.55 var(--font);margin:0}
+.in{max-width:820px;margin:0 auto;padding:18px 16px 60px}
+.top{display:flex;justify-content:space-between;gap:12px;color:var(--muted);font-size:.85rem;border-bottom:1px solid var(--fg);padding-bottom:10px}
+.top a{color:var(--accent);font-weight:700;text-decoration:none}
+h1{font-family:var(--serif);font-size:2.2rem;line-height:1.15;margin:26px 0 8px}
+.lead{color:var(--muted);max-width:62ch;margin:0}
+h2{font-family:var(--serif);font-size:1.45rem;margin:38px 0 6px}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 4px;padding:0;list-style:none}
+.toc a{display:inline-block;padding:8px 12px;border:1.5px solid var(--line);border-radius:999px;color:var(--fg);text-decoration:none;font-size:.92rem;background:var(--surface)}
+.toc a:hover{border-color:var(--accent)}
+.demo{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-top:14px}
+.demo .num{font-family:var(--serif);color:var(--accent);font-weight:600;margin-right:6px}
+.demo h3{font-family:var(--serif);font-size:1.12rem;font-weight:600;margin:0;display:inline}
+.chap{display:block;color:var(--muted);font-size:.85rem;margin-top:4px}
+.enonce{margin:12px 0 0;padding:12px 14px;background:var(--accent-soft);border-radius:10px}
+details{margin-top:12px}
+summary{cursor:pointer;color:var(--accent);font-weight:700;min-height:44px;display:flex;align-items:center;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::before{content:'';width:0;height:0;border-left:7px solid currentColor;border-top:5px solid transparent;border-bottom:5px solid transparent;margin-right:10px;transition:transform .15s}
+details[open] summary::before{transform:rotate(90deg)}
+.preuve{border-left:3px solid var(--accent);padding:2px 0 2px 16px;margin-top:6px}
+.preuve p{margin:10px 0}
+.preuve .fin{color:var(--muted);text-align:right;margin:4px 0 0}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:4px 0}
+.note{color:var(--muted);font-size:.92rem}
+.bar{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.bar button{font:inherit;font-size:.95rem;font-weight:600;padding:10px 16px;min-height:44px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
+.bar button:hover{border-color:var(--accent)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+@media print{.bar,.toc,.top a{display:none}details>*{display:block}.demo{break-inside:avoid}}
+@media (prefers-reduced-motion:reduce){summary::before{transition:none}}
+</style></head><body><div class="in">
+<div class="top"><span>Terminale spécialité mathématiques</span><a href="./">Questions de cours</a></div>
+<h1>Les démonstrations à connaître pour le bac</h1>
+<p class="lead">Les démonstrations listées dans le programme de spécialité de terminale (programme de 2019, en vigueur pour le bac 2027). Pour chacune : l’énoncé, puis la preuve à cacher le temps de la refaire seul.</p>
+<div class="bar"><button type="button" id="all">Tout afficher</button><button type="button" id="none">Tout masquer</button></div>
+<ul class="toc">
+  <li><a href="#suites">Suites</a></li><li><a href="#fonctions">Fonctions</a></li><li><a href="#integrales">Primitives et intégrales</a></li>
+  <li><a href="#denombrement">Dénombrement</a></li><li><a href="#espace">Géométrie dans l’espace</a></li><li><a href="#probas">Probabilités</a></li>
+</ul>
+
+<h2 id="suites">Suites</h2>
+
+<article class="demo"><span class="num">1</span><h3>Une suite croissante non majorée tend vers $+\infty$</h3><span class="chap">Chapitre 3 · Limites de suites</span>
+<p class="enonce">Si $(u_n)$ est croissante et non majorée, alors $\lim\limits_{n\to+\infty}u_n=+\infty$.</p>
+<details><summary>Voir la démonstration</summary><div class="preuve">
+<p>Soit $A$ un réel. La suite n’est pas majorée, donc $A$ n’est pas un majorant : il existe un rang $N$ tel que $u_N>A$.</p>
+<p>La suite est croissante, donc pour tout $n\geqslant N$, $u_n\geqslant u_N>A$.</p>
+<p>Ainsi, pour tout réel $A$, tous les termes de la suite appartiennent à $]A\,;+\infty[$ à partir du rang $N$ : c’est la définition de $\lim\limits_{n\to+\infty}u_n=+\infty$.</p><p class="fin">∎</p>
+</div></details></article>
+
+<article class="demo"><span class="num">2</span><h3>Inégalité de Bernoulli, puis limite de $(q^n)$ pour $q>1$</h3><span class="chap">Chapitres 1 et 3 · Suites et récurrence, limites de suites</span>
+<p class="enonce">Pour tout réel $a>0$ et tout entier naturel $n$, $(1+a)^n\geqslant1+na$. On en déduit que si $q>1$, alors $\lim\limits_{n\to+\infty}q^n=+\infty$.</p>
+<details><summary>Voir la démonstration</summary><div class="preuve">
+<p><b>Inégalité, par récurrence.</b> Pour tout entier naturel $n$, on note $\mathcal P(n)$ : « $(1+a)^n\geqslant1+na$ ».</p>
+<p><i>Initialisation.</i> $(1+a)^0=1$ et $1+0\times a=1$, donc $\mathcal P(0)$ est vraie.</p>
+<p><i>Hérédité.</i> Soit $n$ un entier naturel tel que $\mathcal P(n)$ est vraie : $(1+a)^n\geqslant1+na$. Comme $1+a>0$, on peut multiplier les deux membres par $1+a$ sans changer le sens de l’inégalité :
+$$(1+a)^{n+1}\geqslant(1+na)(1+a)=1+(n+1)a+na^2\geqslant1+(n+1)a,$$
+car $na^2\geqslant0$. Donc $\mathcal P(n+1)$ est vraie.</p>
+<p><i>Conclusion.</i> $\mathcal P(0)$ est vraie et la propriété est héréditaire, donc pour tout entier naturel $n$, $(1+a)^n\geqslant1+na$.</p>
+<p><b>Limite.</b> Soit $q>1$. On pose $a=q-1>0$. D’après l’inégalité, pour tout $n$, $q^n=(1+a)^n\geqslant1+na$. Comme $a>0$, $\lim\limits_{n\to+\infty}(1+na)=+\infty$. Par comparaison (démonstration 3), $\lim\limits_{n\to+\infty}q^n=+\infty$.</p><p class="fin">∎</p>
+</div></details></article>
+
+<article class="demo"><span class="num">3</span><h3>Une suite minorée par une suite qui tend vers $+\infty$ tend vers $+\infty$</h3><span class="chap">Chapitre 3 · Limites de suites</span>
+<p class="enonce">Si $u_n\geqslant v_n$ à partir d’un certain rang $n_0$ et si $\lim\limits_{n\to+\infty}v_n=+\infty$, alors $\lim\limits_{n\to+\infty}u_n=+\infty$.</p>
+<details><summary>Voir la démonstration</summary><div class="preuve">
+<p>Soit $A$ un réel. Comme $\lim v_n=+\infty$, il existe un rang $N_1$ tel que, pour tout $n\geqslant N_1$, $v_n>A$.</p>
+<p>On note $N$ le plus grand des deux entiers $n_0$ et $N_1$. Pour tout $n\geqslant N$, on a à la fois $u_n\geqslant v_n$ et $v_n>A$, donc $u_n>A$.</p>
+<p>Tous les termes de $(u_n)$ sont dans $]A\,;+\infty[$ à partir du rang $N$, et ce pour tout réel $A$ : $\lim\limits_{n\to+\infty}u_n=+\infty$.</p><p class="fin">∎</p>
+</div></details></article>
+
+<h2 id="fonctions">Fonctions</h2>
+
+<article class="demo"><span class="num">4</span><h3>Limites de la fonction exponentielle en $+\infty$ et en $-\infty$</h3><span class="chap">Chapitre 4 · Limites de fonctions</span>
+<p class="enonce">$\lim\limits_{x\to+\infty}\mathrm e^{x}=+\infty$ et $\lim\limits_{x\to-\infty}\mathrm e^{x}=0$.</p>
+<details><summary>Voir la démonstration</summary><div class="preuve">
+<p><b>En $+\infty$.</b> On étudie $g(x)=\mathrm e^{x}-x$ sur $[0\,;+\infty[$. $g$ est dérivable et $g'(x)=\mathrm e^{x}-1\geqslant0$ pour $x\geqslant0$, car $\mathrm e^{x}\geqslant\mathrm e^{0}=1$. Donc $g$ est croissante sur $[0\,;+\infty[$ et $g(x)\geqslant g(0)=1>0$.</p>
+<p>Ainsi $\mathrm e^{x}>x$ pour tout $x\geqslant0$. Comme $\lim\limits_{x\to+\infty}x=+\infty$, par comparaison, $\lim\limits_{x\to+\infty}\mathrm e^{x}=+\infty$.</p>
+<p><b>En $-\infty$.</b> Pour tout réel $x$, $\mathrm e^{x}=\dfrac1{\mathrm e^{-x}}$. On pose $X=-x$ : quand $x$ tend vers $-\infty$, $X$ tend vers $+\infty$, donc $\mathrm e^{X}$ tend vers $+\infty$ et $\dfrac1{\mathrm e^{X}}$ tend vers $0$. Par composition, $\lim\limits_{x\to-\infty}\mathrm e^{x}=0$.</p><p class="fin">∎</p>
+</div></details></article>
+
+<article class="demo"><span class="num">5</span><h3>Croissance comparée de $x\mapsto x^n$ et de l’exponentielle en $+\infty$</h3><span class="chap">Chapitre 4 · Limites de fonctions</span>
+<p class="enonce">Pour tout entier $n\geqslant1$, $\lim\limits_{x\to+\infty}\dfrac{\mathrm e^{x}}{x^n}=+\infty$.</p>
+<details><summary>Voir la démonstration</summary><div class="preuve">
+<p><b>Cas $n=1$.</b> On étudie $h(x)=\mathrm e^{x}-\dfrac{x^2}2$ sur $[0\,;+\infty[$. $h'(x)=\mathrm e^{x}-x>0$ (démonstration 4), donc $h$ est croissante et $h(x)\geqslant h(0)=1>0$. Ainsi, pour $x>0$, $\mathrm e^{x}>\dfrac{x^2}2$, soit $\dfrac{\mathrm e^{x}}{x}>\dfrac x2$. Comme $\lim\limits_{x\to+\infty}\dfrac x2=+\infty$, par comparaison $\lim\limits_{x\to+\infty}\dfrac{\mathrm e^{x}}{x}=+\infty$.</p>
+<p><b>Cas général.</b> Pour $x>0$,
+$$\frac{\mathrm e^{x}}{x^n}=\frac{\left(\mathrm e^{x/n}\right)^n}{x^n}=\frac1{n^n}\left(\frac{\mathrm e^{x/n}}{x/n}\right)^{n}.$$
+On pose $X=\dfrac xn$ : quand $x$ tend vers $+\infty$, $X$ aussi, et $\dfrac{\mathrm e^{X}}{X}$ tend vers $+\infty$ d’après le cas $n=1$. Sa puissance $n$-ième tend donc vers $+\infty$, et le produit par la constante $\dfrac1{n^n}>0$ aussi.</p><p class="fin">∎</p>
+</div></details></article>
+
+<article class="demo"><span class="num">6</span><h3>Si $f''$ est positive, la courbe est au-dessus de ses tangentes</h3><span class="chap">Chapitre 7 · Convexité</span>
+<p class="enonce">Soit $f$ deux fois dérivable sur un intervalle $I$, avec $f''\geqslant0$ sur $I$. Alors, pour tout $a\in I$, la courbe de $f$ est au-dessus de sa tangente au point d’abscisse $a$.</p>
+<details><summary>Voir la démonstration</summary><div class="preuve">
+<p>La tangente en $a$ a pour équation $y=f'(a)(x-a)+f(a)$. On pose, pour $x\in I$, $g(x)=f(x)-f'(a)(x-a)-f(a)$ : il s’agit de montrer que $g\geqslant0$ sur $I$.</p>
+<p>$g$ est deux fois dérivable : $g'(x)=f'(x)-f'(a)$ et $g''(x)=f''(x)\geqslant0$. Donc $g'$ est croissante sur $I$, et $g'(a)=0$.</p>
+<p>Ainsi $g'(x)\leqslant0$ pour $x\leqslant a$ et $g'(x)\geqslant0$ pour $x\geqslant a$ : $g$ est décroissante puis croissante, et admet un minimum en $a$, égal à $g(a)=0$.</p>
+<p>Donc $g(x)\geqslant0$ pour tout $x\in I$ : la courbe est au-dessus de la tangente.</p><p class="fin">∎</p>
+</div></details></article>
+
+<article class="demo"><span class="num">7</span><h3>Dérivée de la fonction logarithme népérien</h3><span class="chap">Chapitre 8 · Fonction logarithme népérien</span>
+<p class="enonce">La fonction $\ln$ étant admise dérivable sur $]0\,;+\infty[$, pour tout $x>0$, $\ln'(x)=\dfrac1x$.</p>
+<details><summary>Voir la démonstration</summary><div class="preuve">
+<p>Pour tout $x>0$, $\mathrm e^{\ln x}=x$. On dérive les deux membres (dérivée d’une composée, $\ln$ étant dérivable) :
+$$\ln'(x)\times\mathrm e^{\ln x}=1,\quad\text{soit}\quad \ln'(x)\times x=1.$$
+Comme $x\neq0$, $\ln'(x)=\dfrac1x$.</p><p class="fin">∎</p>
+</div></details></article>
+
+<article class="demo"><span class="num">8</span><h3>Limite en $0$ de $x\mapsto x\ln x$</h3><span class="chap">Chapitre 8 · Fonction logarithme népérien</span>
+<p class="enonce">$\lim\limits_{x\to0^+}x\ln x=0$.</p>
+<details><summary>Voir la démonstration</summary><div class="preuve">
+<p>On pose $X=\ln x$, soit $x=\mathrm e^{X}$. Quand $x$ tend vers $0^+$, $X$ tend vers $-\infty$, et $x\ln x=X\mathrm e^{X}$.</p>
+<p>On pose ensuite $Y=-X$, qui tend vers $+\infty$ : $X\mathrm e^{X}=-Y\mathrm e^{-Y}=-\dfrac{1}{\;\mathrm e^{Y}/Y\;}$. Par croissance comparée (démonstration 5), $\dfrac{\mathrm e^{Y}}{Y}$ tend vers $+\infty$, donc $-\dfrac1{\mathrm e^{Y}/Y}$ tend vers $0$.</p>
+<p>Par composition, $\lim\limits_{x\to0^+}x\ln x=0$.</p><p class="fin">∎</p>
+</div></details></article>
+
+<h2 id="integrales">Primitives, équations différentielles et intégrales</h2>
+
+<article class="demo"><span class="num">9</span><h3>Deux primitives d’une même fonction diffèrent d’une constante</h3><span class="chap">Chapitre 2 · Équations différentielles (et primitives, période 4)</span>
+<p class="enonce">Si $F$ et $G$ sont deux primitives d’une fonction $f$ continue sur un intervalle $I$, alors il existe un réel $C$ tel que $G=F+C$ sur $I$.</p>
+<details><summary>Voir la démonstration</summary><div class="preuve">
+<p>$G-F$ est dérivable sur $I$ et $(G-F)'=G'-F'=f-f=0$.</p>
+<p>Une fonction dont la dérivée est nulle sur un <b>intervalle</b> est constante sur cet intervalle : il existe un réel $C$ tel que $G(x)-F(x)=C$ pour tout $x\in I$.</p>
+<p>Réciproquement, pour tout réel $C$, $F+C$ est une primitive de $f$, car $(F+C)'=F'=f$.</p><p class="fin">∎</p>
+</div></details></article>
+
+<article class="demo"><span class="num">10</span><h3>Résolution de l’équation différentielle $y'=ay$</h3><span class="chap">Chapitre 2 · Équations différentielles</span>
+<p class="enonce">Soit $a$ un réel. Les solutions sur $\mathbb R$ de $y'=ay$ sont les fonctions $x\mapsto C\,\mathrm e^{ax}$, où $C$ est un réel.</p>
+<details><summary>Voir la démonstration</summary><div class="preuve">
+<p><b>Ces fonctions sont solutions.</b> Si $f(x)=C\,\mathrm e^{ax}$, alors $f'(x)=aC\,\mathrm e^{ax}=af(x)$.</p>
+<p><b>Ce sont les seules.</b> Soit $f$ une solution. On pose $g(x)=f(x)\,\mathrm e^{-ax}$. $g$ est dérivable sur $\mathbb R$ et
+$$g'(x)=f'(x)\mathrm e^{-ax}-af(x)\mathrm e^{-ax}=\big(f'(x)-af(x)\big)\mathrm e^{-ax}=0.$$
+$g$ est donc constante sur l’intervalle $\mathbb R$ : il existe un réel $C$ tel que $f(x)\mathrm e^{-ax}=C$, soit $f(x)=C\,\mathrm e^{ax}$.</p><p class="fin">∎</p>
+</div></details></article>
+
+<article class="demo"><span class="num">11</span><h3>L’intégrale comme primitive, et calcul à l’aide d’une primitive</h3><span class="chap">Intégrales · période 4</span>
+<p class="enonce">Si $f$ est continue, positive et croissante sur $[a\,;b]$, la fonction $F:x\mapsto\displaystyle\int_a^x f(t)\,\mathrm dt$ est une primitive de $f$. Pour toute primitive $G$ de $f$, $\displaystyle\int_a^b f(x)\,\mathrm dx=G(b)-G(a)$.</p>
+<details><summary>Voir la démonstration</summary><div class="preuve">
+<p><b>$F$ est dérivable de dérivée $f$.</b> Soit $x\in[a\,;b[$ et $h>0$ tel que $x+h\leqslant b$. $F(x+h)-F(x)=\displaystyle\int_x^{x+h}f(t)\,\mathrm dt$ est l’aire sous la courbe entre $x$ et $x+h$. Comme $f$ est croissante, cette aire est comprise entre celles des rectangles de largeur $h$ et de hauteurs $f(x)$ et $f(x+h)$ :
+$$h\,f(x)\leqslant F(x+h)-F(x)\leqslant h\,f(x+h),\quad\text{donc}\quad f(x)\leqslant\frac{F(x+h)-F(x)}h\leqslant f(x+h).$$
+$f$ est continue en $x$, donc $f(x+h)$ tend vers $f(x)$ quand $h$ tend vers $0$. Par le théorème des gendarmes, le taux d’accroissement tend vers $f(x)$.</p>
+<p>Pour $h<0$ (avec $x+h\geqslant a$), le même raisonnement sur $[x+h\,;x]$ donne $f(x+h)\leqslant\dfrac{F(x+h)-F(x)}h\leqslant f(x)$, et la même limite. Donc $F$ est dérivable et $F'=f$.</p>
+<p><b>Calcul.</b> Si $G$ est une primitive de $f$, alors $G=F+C$ (démonstration 9). Comme $F(a)=0$ :
+$$G(b)-G(a)=F(b)-F(a)=\int_a^b f(x)\,\mathrm dx.$$</p><p class="fin">∎</p>
+</div></details></article>
+
+<article class="demo"><span class="num">12</span><h3>Intégration par parties</h3><span class="chap">Intégrales · période 4</span>
+<p class="enonce">Si $u$ et $v$ sont dérivables sur $[a\,;b]$, de dérivées continues, alors $\displaystyle\int_a^b u(x)v'(x)\,\mathrm dx=\big[u(x)v(x)\big]_a^b-\int_a^b u'(x)v(x)\,\mathrm dx$.</p>
+<details><summary>Voir la démonstration</summary><div class="preuve">
+<p>Le produit $uv$ est dérivable et $(uv)'=u'v+uv'$, qui est continue. Donc $uv$ est une primitive de $u'v+uv'$, et
+$$\int_a^b\big(u'(x)v(x)+u(x)v'(x)\big)\,\mathrm dx=\big[u(x)v(x)\big]_a^b.$$</p>
+<p>Par linéarité de l’intégrale, $\displaystyle\int_a^b u'v+\int_a^b uv'=\big[uv\big]_a^b$, d’où le résultat.</p><p class="fin">∎</p>
+</div></details></article>
+
+<h2 id="denombrement">Dénombrement</h2>
+
+<article class="demo"><span class="num">13</span><h3>Somme des coefficients binomiaux : $\sum\limits_{k=0}^{n}\binom nk=2^n$</h3><span class="chap">Chapitre D1 · Dénombrement</span>
+<p class="enonce">Pour tout entier naturel $n$, $\displaystyle\sum_{k=0}^{n}\binom nk=2^n$ (démonstration par dénombrement).</p>
+<details><summary>Voir la démonstration</summary><div class="preuve">
+<p>Soit $E$ un ensemble à $n$ éléments. On compte ses parties de deux façons.</p>
+<p><b>Par leur nombre d’éléments.</b> Une partie de $E$ a $k$ éléments, avec $0\leqslant k\leqslant n$, et il y a $\dbinom nk$ parties à $k$ éléments. Le nombre total de parties est donc $\displaystyle\sum_{k=0}^{n}\binom nk$.</p>
+<p><b>Élément par élément.</b> Une partie est entièrement déterminée par la réponse, pour chacun des $n$ éléments, à la question « appartient-il à la partie ? » (oui ou non). Il y a donc autant de parties que de $n$-uplets de $\{\text{oui}\,;\text{non}\}$, soit $2^n$.</p>
+<p>Les deux nombres comptent les mêmes objets, d’où l’égalité.</p><p class="fin">∎</p>
+</div></details></article>
+
+<article class="demo"><span class="num">14</span><h3>Relation de Pascal, par le calcul et par le dénombrement</h3><span class="chap">Chapitre D1 · Dénombrement</span>
+<p class="enonce">Pour tous entiers $n\geqslant2$ et $1\leqslant k\leqslant n-1$, $\dbinom nk=\dbinom{n-1}{k-1}+\dbinom{n-1}{k}$.</p>
+<details><summary>Voir la démonstration</summary><div class="preuve">
+<p><b>Par le calcul.</b>
+$$\binom{n-1}{k-1}+\binom{n-1}{k}=\frac{(n-1)!}{(k-1)!\,(n-k)!}+\frac{(n-1)!}{k!\,(n-1-k)!}.$$
+On met au même dénominateur $k!\,(n-k)!$, en multipliant la première fraction par $\dfrac kk$ et la seconde par $\dfrac{n-k}{n-k}$ :
+$$\frac{(n-1)!\,k+(n-1)!\,(n-k)}{k!\,(n-k)!}=\frac{(n-1)!\,n}{k!\,(n-k)!}=\frac{n!}{k!\,(n-k)!}=\binom nk.$$</p>
+<p><b>Par le dénombrement.</b> Soit $E$ un ensemble à $n$ éléments et $a$ un élément fixé de $E$. Les parties de $E$ à $k$ éléments se répartissent en deux catégories qui ne se recouvrent pas :</p>
+<p>· celles qui contiennent $a$ : il reste à choisir $k-1$ éléments parmi les $n-1$ autres, soit $\dbinom{n-1}{k-1}$ parties ;<br>· celles qui ne contiennent pas $a$ : on choisit les $k$ éléments parmi les $n-1$ autres, soit $\dbinom{n-1}{k}$ parties.</p>
+<p>Le total est $\dbinom nk$, d’où la relation.</p><p class="fin">∎</p>
+</div></details></article>
+
+<h2 id="espace">Géométrie dans l’espace</h2>
+
+<article class="demo"><span class="num">15</span><h3>Le projeté orthogonal est le point du plan le plus proche</h3><span class="chap">Produit scalaire dans l’espace · période 4</span>
+<p class="enonce">Soit $\mathcal P$ un plan, $M$ un point et $H$ son projeté orthogonal sur $\mathcal P$. Pour tout point $N$ de $\mathcal P$, $MN\geqslant MH$, avec égalité seulement si $N=H$.</p>
+<details><summary>Voir la démonstration</summary><div class="preuve">
+<p>Soit $N$ un point de $\mathcal P$. $\overrightarrow{MN}=\overrightarrow{MH}+\overrightarrow{HN}$. Le vecteur $\overrightarrow{MH}$ est orthogonal au plan $\mathcal P$, donc à $\overrightarrow{HN}$ qui est un vecteur de ce plan : $\overrightarrow{MH}\cdot\overrightarrow{HN}=0$.</p>
+<p>Alors
+$$MN^2=\big(\overrightarrow{MH}+\overrightarrow{HN}\big)^2=MH^2+2\,\overrightarrow{MH}\cdot\overrightarrow{HN}+HN^2=MH^2+HN^2\geqslant MH^2.$$</p>
+<p>Donc $MN\geqslant MH$, et l’égalité a lieu si et seulement si $HN=0$, c’est-à-dire $N=H$.</p><p class="fin">∎</p>
+</div></details></article>
+
+<article class="demo"><span class="num">16</span><h3>Équation cartésienne d’un plan défini par un point et un vecteur normal</h3><span class="chap">Équations de plans · période 4</span>
+<p class="enonce">Dans un repère orthonormé, le plan passant par $A(x_A;y_A;z_A)$ et de vecteur normal $\vec n(a;b;c)\neq\vec 0$ a une équation de la forme $ax+by+cz+d=0$.</p>
+<details><summary>Voir la démonstration</summary><div class="preuve">
+<p>Un point $M(x;y;z)$ appartient au plan si et seulement si $\overrightarrow{AM}$ est orthogonal à $\vec n$, c’est-à-dire $\overrightarrow{AM}\cdot\vec n=0$.</p>
+<p>Dans un repère orthonormé, $\overrightarrow{AM}(x-x_A\,;y-y_A\,;z-z_A)$ et
+$$\overrightarrow{AM}\cdot\vec n=a(x-x_A)+b(y-y_A)+c(z-z_A)=ax+by+cz+d,\quad\text{avec } d=-(ax_A+by_A+cz_A).$$</p>
+<p>Le plan est donc l’ensemble des points dont les coordonnées vérifient $ax+by+cz+d=0$.</p><p class="fin">∎</p>
+</div></details></article>
+
+<h2 id="probas">Probabilités</h2>
+
+<article class="demo"><span class="num">17</span><h3>Probabilité de $k$ succès dans un schéma de Bernoulli</h3><span class="chap">Chapitre P1 · Loi binomiale</span>
+<p class="enonce">Dans un schéma de Bernoulli de paramètres $n$ et $p$, si $X$ compte les succès, alors pour tout $k\in\{0;\dots;n\}$, $P(X=k)=\dbinom nk p^k(1-p)^{n-k}$.</p>
+<details><summary>Voir la démonstration</summary><div class="preuve">
+<p>Une issue du schéma est une liste de $n$ résultats, chacun succès (S) ou échec (E) ; on peut la représenter par un chemin de l’arbre.</p>
+<p>Les épreuves sont indépendantes, donc la probabilité d’une liste est le produit des probabilités de ses résultats. Une liste qui contient exactement $k$ succès et $n-k$ échecs a donc pour probabilité $p^k(1-p)^{n-k}$, quelle que soit la position des succès.</p>
+<p>Une telle liste est déterminée par les positions des $k$ succès parmi les $n$ épreuves : il y en a $\dbinom nk$.</p>
+<p>L’événement $\{X=k\}$ est la réunion de ces listes, deux à deux incompatibles, donc $P(X=k)=\dbinom nk p^k(1-p)^{n-k}$.</p><p class="fin">∎</p>
+</div></details></article>
+
+<article class="demo"><span class="num">18</span><h3>Espérance et variance de la loi binomiale</h3><span class="chap">Somme de variables aléatoires · période 4</span>
+<p class="enonce">Si $X$ suit la loi binomiale $\mathcal B(n;p)$, alors $E(X)=np$ et $V(X)=np(1-p)$.</p>
+<details><summary>Voir la démonstration</summary><div class="preuve">
+<p>Pour $i$ de $1$ à $n$, on note $X_i$ la variable aléatoire qui vaut $1$ si la $i$-ième épreuve est un succès et $0$ sinon. Alors $X=X_1+X_2+\dots+X_n$, et les $X_i$ sont indépendantes, de loi de Bernoulli de paramètre $p$.</p>
+<p>Pour chaque $i$ : $E(X_i)=1\times p+0\times(1-p)=p$ et $E(X_i^2)=p$ (car $X_i^2=X_i$), donc $V(X_i)=E(X_i^2)-E(X_i)^2=p-p^2=p(1-p)$.</p>
+<p>Par linéarité de l’espérance, $E(X)=E(X_1)+\dots+E(X_n)=np$.</p>
+<p>Les $X_i$ étant indépendantes, la variance de la somme est la somme des variances : $V(X)=V(X_1)+\dots+V(X_n)=np(1-p)$.</p><p class="fin">∎</p>
+</div></details></article>
+
+<p class="note" style="margin-top:34px">Liste établie d’après les rubriques « Démonstrations » du programme de spécialité mathématiques de terminale générale (Bulletin officiel spécial n° 8 du 25 juillet 2019). Le nouveau programme publié en 2026 ne s’applique en terminale qu’à la rentrée 2027.</p>
+</div>
+<script>
+document.getElementById('all').onclick=()=>document.querySelectorAll('details').forEach(d=>d.open=true);
+document.getElementById('none').onclick=()=>document.querySelectorAll('details').forEach(d=>d.open=false);
+window.addEventListener('load',()=>{if(window.renderMathInElement)renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false,strict:'ignore'})});
+if('serviceWorker' in navigator&&location.protocol==='https:')window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+</script>
+</body></html>
